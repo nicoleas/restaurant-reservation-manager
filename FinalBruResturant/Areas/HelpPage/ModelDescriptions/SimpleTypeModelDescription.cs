@@ -1,0 +1,6 @@
+namespace FinalBruResturant.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
