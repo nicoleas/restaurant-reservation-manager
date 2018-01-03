@@ -1,0 +1,73 @@
+﻿@model FinalBruResturant.Models.Reservation
+@{
+    ViewBag.Title = "Thanks";
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Thanks</title>
+        <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    </head>
+    <body class="text-center">
+
+        @{ 
+            string stringMonth = "";
+        }
+
+        @switch (Model.DateTime.Month) {
+            case 1:
+                stringMonth = "January";
+                break;
+            case 2:
+                stringMonth = "February";
+                break;
+            case 3:
+                stringMonth = "March";
+                break;
+            case 4:
+                stringMonth = "April";
+                break;
+            case 5:
+                stringMonth = "May";
+                break;
+            case 6:
+                stringMonth = "June";
+                break;
+            case 7:
+                stringMonth = "July";
+                break;
+            case 8:
+                stringMonth = "August";
+                break;
+            case 9:
+                stringMonth = "September";
+                break;
+            case 10:
+                stringMonth = "October";
+                break;
+            case 11:
+                stringMonth = "November";
+                break;
+            case 12:
+                stringMonth = "December";
+                break;
+            default:
+                break;
+        }
+
+        <p>
+            <h1>Thank you, @Model.Name!</h1>
+            <h3>
+                Your reservation is confirmed for @stringMonth
+                @Model.DateTime.Day, @Model.DateTime.Year at @Model.DateTime.TimeOfDay for
+                @Model.NumPeople people
+            </h3>
+            <h3>We can't wait to see you!</h3>
+        </p>
+
+
+    </body>
+</html>
