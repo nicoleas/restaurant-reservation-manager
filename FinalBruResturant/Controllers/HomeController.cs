@@ -15,6 +15,68 @@ namespace FinalBruResturant.Controllers
         }
 
         [HttpGet]
+        public ActionResult MainPage()
+        {
+            return View("MainPage");
+        }
+
+        [HttpGet]
+        public ActionResult CreateProfilePage()
+        {
+            return View("CreateProfilePage");
+        }
+
+        [HttpPost]
+        public ActionResult CreateProfilePage(Profile profile)
+        {
+            if (ModelState.IsValid)
+            {
+
+                String sender = Request.Form["submit"]; //store retrieved values from form
+
+                //ENTITY FRAMEWORK
+                /*
+                Student student = new Student();
+
+                student.StudentId = studentId + 1;
+                student.Name = studentResponse.Name;
+                student.Email = studentResponse.Email;
+                student.Phone = studentResponse.Phone;
+                student.Address = studentResponse.Address;
+                student.TechnicalInterest = studentResponse.TechnicalInterest.ToString();
+                student.SocialNetworkInterest = studentResponse.SocialNetworkInterest;
+
+                Attend attend = new Attend();
+
+                attend.Id = attendId + 1;
+                attend.Student = student.StudentId;
+                switch (studentResponse.WillAttend)
+                {
+                    case true:
+                        attend.AcceptRegret = "Accept";
+                        break;
+                    case false:
+                        attend.AcceptRegret = "Regret";
+                        break;
+                    default:
+                        attend.AcceptRegret = "Regret";
+                        break;
+                }
+
+                client.InsertIntoDB(student, attend);
+                */
+
+                return View("ConfirmationPage", profile);
+
+            }
+            else
+            {
+                //there is a validation error
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult ReservationsPage()
         {
             return View("ReservationsPage");

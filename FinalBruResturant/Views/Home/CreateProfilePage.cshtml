@@ -1,7 +1,58 @@
-﻿
+﻿@using FinalBruResturant.Models
+@model FinalBruResturant.Models.Profile
 @{
     ViewBag.Title = "CreateProfilePage";
 }
 
-<h2>Create Profile</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+</head>
+<body>
+    <br /><br />
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center"><h4>Create New Profile</h4></div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("FirstName", "First Name:")<br />
+                    @Html.TextBox("FirstName", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("LastName", "Last Name:")<br />
+                    @Html.TextBox("LastName", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", "Email:")<br />
+                    @Html.TextBox("Email", null, new { @class = "form-control", @type = "email" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Phone", "Phone Number:")<br />
+                    @Html.TextBox("Phone", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Password1", "Password:")<br />
+                    @Html.TextBox("Password1", null, new { @class = "form-control", @type = "password" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Password2", "Confirm password:")<br />
+                    @Html.TextBox("Password2", null, new { @class = "form-control", @type = "password" })
+                </div>
+                <div>
+                    <button class="btn btn-primary" name="submit" type="submit">Create Profile</button>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
 
