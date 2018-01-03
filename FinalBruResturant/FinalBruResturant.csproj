@@ -238,8 +238,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ReservationsPage.cshtml" />
     <Content Include="Views\Home\MainPage.cshtml" />
-    <Content Include="Views\Home\LoginPage.cshtml" />
     <Content Include="Views\Home\Thanks.cshtml" />
+    <Content Include="Views\Home\CreateProfilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
