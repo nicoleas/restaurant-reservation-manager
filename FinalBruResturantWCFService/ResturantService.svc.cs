@@ -28,16 +28,19 @@ namespace FinalBruResturantWCFService
         {
             entities.Reservations.Add(reservation);
             entities.Users.Add(user);
+            entities.SaveChanges();
         }
 
         public void InsertReservationIntoDB(Reservation reservation)
         {
             entities.Reservations.Add(reservation);
+            entities.SaveChanges();
         }
 
         public void InsertUserIntoDB(User user)
         {
             entities.Users.Add(user);
+            entities.SaveChanges();
         }
     }
 }

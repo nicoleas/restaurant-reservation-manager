@@ -73,40 +73,18 @@ namespace FinalBruResturant.Controllers
             if (ModelState.IsValid)
             {
 
+                int fakeId = 0;
+
                 String sender = Request.Form["submit"]; //store retrieved values from form
 
-                
+                Reservation reservation = new Reservation();
 
-                //ENTITY FRAMEWORK
-                /*Student student = new Student();
+                reservation.DateTime = reservationModel.DateTime;
+                reservation.NumPeople = reservationModel.NumPeople;
+                //TODO: Use UserId from people who make reservation (0 for guest)
+                reservation.UserId = fakeId+1;
 
-                student.StudentId = studentId + 1;
-                student.Name = studentResponse.Name;
-                student.Email = studentResponse.Email;
-                student.Phone = studentResponse.Phone;
-                student.Address = studentResponse.Address;
-                student.TechnicalInterest = studentResponse.TechnicalInterest.ToString();
-                student.SocialNetworkInterest = studentResponse.SocialNetworkInterest;
-
-                Attend attend = new Attend();
-
-                attend.Id = attendId + 1;
-                attend.Student = student.StudentId;
-                switch (studentResponse.WillAttend)
-                {
-                    case true:
-                        attend.AcceptRegret = "Accept";
-                        break;
-                    case false:
-                        attend.AcceptRegret = "Regret";
-                        break;
-                    default:
-                        attend.AcceptRegret = "Regret";
-                        break;
-                }
-
-                client.InsertIntoDB(student, attend);
-                */
+                client.InsertReservationIntoDB(reservation);
 
                 return View("Thanks", reservationModel);
 
