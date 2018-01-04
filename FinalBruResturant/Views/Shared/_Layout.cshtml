@@ -18,11 +18,12 @@
                 </button>
                 @Html.ActionLink("bru Resturant", "Home", "Reservations", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "MainPage", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Reservations", "ReservationsPage", "Home", null, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Login", "LoginPage", "Home", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>

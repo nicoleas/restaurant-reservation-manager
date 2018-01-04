@@ -12,8 +12,9 @@ namespace FinalBruResturant.Controllers
     {
         private ResturantServiceClient client = new ResturantServiceClient();
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
+            ViewBag.listAllUsers = client.findAllUsers();
             return View("MainPage");
         }
 
@@ -29,6 +30,32 @@ namespace FinalBruResturant.Controllers
         }
 
         [HttpGet]
+        public ActionResult LoginPage()
+        {
+                return View("LoginPage");
+        }
+
+        public ActionResult LoginPage(Login login)
+        {
+            String username = login.Username;
+            String password = login.Password;
+
+            if (ModelState.IsValid)
+            {
+                if (client.findUserByUsername(username).Count() == 1)
+                {
+                    User userAttempt = client.findUserByUsername(username)[0];
+                    ViewBag.currentUser = userAttempt;
+                }
+                else
+                {
+                    ViewBag.currentUser = null;
+                }
+            }
+                return View("MainPage");
+        }
+
+        [HttpGet]
         public ActionResult CreateProfilePage()
         {
             return View("CreateProfilePage");
@@ -40,17 +67,16 @@ namespace FinalBruResturant.Controllers
             if (ModelState.IsValid)
             {
 
-                String sender = Request.Form["submit"]; //store retrieved values from form
-
                 //insert into database using entity framework
                 User user = new User();
 
                 user.FirstName = profile.FirstName;
                 user.LastName = profile.LastName;
                 user.Email = profile.Email;
-                user.Phone = Convert.ToInt64(profile.Phone);
+                user.Phone = profile.Phone;
                 user.Username = profile.Username;
                 user.Password = profile.Password;
+                user.RewardPoints = null;
 
                 client.InsertUserIntoDB(user);
 
@@ -76,40 +102,16 @@ namespace FinalBruResturant.Controllers
             if (ModelState.IsValid)
             {
 
-                String sender = Request.Form["submit"]; //store retrieved values from form
+                int fakeId = 0;
 
-                
+                Reservation reservation = new Reservation();
 
-                //ENTITY FRAMEWORK
-                /*Student student = new Student();
+                reservation.DateTime = reservationModel.DateTime;
+                reservation.NumPeople = reservationModel.NumPeople;
+                //TODO: Use UserId from people who make reservation (0 for guest)
+                reservation.UserId = fakeId+1;
 
-                student.StudentId = studentId + 1;
-                student.Name = studentResponse.Name;
-                student.Email = studentResponse.Email;
-                student.Phone = studentResponse.Phone;
-                student.Address = studentResponse.Address;
-                student.TechnicalInterest = studentResponse.TechnicalInterest.ToString();
-                student.SocialNetworkInterest = studentResponse.SocialNetworkInterest;
-
-                Attend attend = new Attend();
-
-                attend.Id = attendId + 1;
-                attend.Student = student.StudentId;
-                switch (studentResponse.WillAttend)
-                {
-                    case true:
-                        attend.AcceptRegret = "Accept";
-                        break;
-                    case false:
-                        attend.AcceptRegret = "Regret";
-                        break;
-                    default:
-                        attend.AcceptRegret = "Regret";
-                        break;
-                }
-
-                client.InsertIntoDB(student, attend);
-                */
+                client.InsertReservationIntoDB(reservation);
 
                 return View("Thanks", reservationModel);
 

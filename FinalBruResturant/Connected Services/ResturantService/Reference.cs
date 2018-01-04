@@ -35,10 +35,7 @@ namespace FinalBruResturant.ResturantService {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FinalBruResturant.ResturantService.Reservation[] ReservationsField;
+        private string PhoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> RewardPointsField;
@@ -112,27 +109,14 @@ namespace FinalBruResturant.ResturantService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Phone {
+        public string Phone {
             get {
                 return this.PhoneField;
             }
             set {
-                if ((this.PhoneField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
                     this.PhoneField = value;
                     this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public FinalBruResturant.ResturantService.Reservation[] Reservations {
-            get {
-                return this.ReservationsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReservationsField, value) != true)) {
-                    this.ReservationsField = value;
-                    this.RaisePropertyChanged("Reservations");
                 }
             }
         }
@@ -205,9 +189,6 @@ namespace FinalBruResturant.ResturantService {
         private int ReservationIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FinalBruResturant.ResturantService.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -260,19 +241,6 @@ namespace FinalBruResturant.ResturantService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FinalBruResturant.ResturantService.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int UserId {
             get {
                 return this.UserIdField;
@@ -310,6 +278,12 @@ namespace FinalBruResturant.ResturantService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findAllReservations", ReplyAction="http://tempuri.org/IResturantService/findAllReservationsResponse")]
         System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
+        FinalBruResturant.ResturantService.User[] findUserByUsername(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
+        System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
         void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
@@ -371,6 +345,14 @@ namespace FinalBruResturant.ResturantService {
         
         public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync() {
             return base.Channel.findAllReservationsAsync();
+        }
+        
+        public FinalBruResturant.ResturantService.User[] findUserByUsername(string username) {
+            return base.Channel.findUserByUsername(username);
+        }
+        
+        public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username) {
+            return base.Channel.findUserByUsernameAsync(username);
         }
         
         public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {

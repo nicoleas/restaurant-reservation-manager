@@ -19,6 +19,9 @@ namespace FinalBruResturantWCFService
         List<Reservation> findAllReservations();
 
         [OperationContract]
+        List<User> findUserByUsername(String username);
+
+        [OperationContract]
         void InsertIntoDB(Reservation reservation, User user);
 
         [OperationContract]
