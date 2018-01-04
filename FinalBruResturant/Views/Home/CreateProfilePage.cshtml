@@ -9,46 +9,66 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create Profile</title>
+    <title>Reserve a Table</title>
     <link rel="stylesheet" href="~/css/styles.css" />
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/Css/ReservationStyle.css" />
+    <link rel="stylesheet" href="~/Css/CreateProfile.css"   />
+    <script type="text/javascript" src="~/Scripts/menu.js"></script>
 </head>
-<body>
-    <br /><br />
-    <div class="panel panel-primary">
-        <div class="panel-heading text-center"><h4>Create New Profile</h4></div>
-        <div class="panel-body">
+<body class="backgroundView">
+    <div id="left"></div>
+    <div id="right"></div>
+    <div id="top"></div>
+    <div id="bottom"></div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        @Html.ActionLink("Home", "MainPage", "Home", null, null)
+        @Html.ActionLink("About", "About", "Home", null, null)
+        <a href="#">Services</a>
+        @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="main">
+        <span style="font-size:40px;cursor:pointer; color:white;" onclick="openNav()">&#9776;</span>
+    </div>
+    <div class="panel headerColor">
+        <div class="panel-heading text-center"><h4 class="headerText">Create New Profile</h4></div>
+        <div class="panel-body body-placement">
             @using (Html.BeginForm())
             {
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
                 <div class="form-group">
                     @Html.Label("FirstName", "First Name:")<br />
-                    @Html.TextBox("FirstName", null, new { @class = "form-control" })
+                    @Html.TextBox("FirstName", null, new { @class = "custom-input" })
                 </div>
                 <div class="form-group">
                     @Html.Label("LastName", "Last Name:")<br />
-                    @Html.TextBox("LastName", null, new { @class = "form-control" })
+                    @Html.TextBox("LastName", null, new { @class = "custom-input" })
                 </div>
                 <div class="form-group">
                     @Html.Label("Email", "Email:")<br />
-                    @Html.TextBox("Email", null, new { @class = "form-control", @type = "email" })
+                    @Html.TextBox("Email", null, new { @class = "custom-input", @type = "email" })
                 </div>
                 <div class="form-group">
                     @Html.Label("Phone", "Phone Number:")<br />
-                    @Html.TextBox("Phone", null, new { @class = "form-control" })
+                    @Html.TextBox("Phone", null, new { @class = "custom-input" })
                     @Html.Label("PhoneDetails", "10 digits, no spaces")
                 </div>
                 <div class="form-group">
                     @Html.Label("Username", "Choose a username:")<br />
-                    @Html.TextBox("Username", null, new { @class = "form-control" })
+                    @Html.TextBox("Username", null, new { @class = "custom-input" })
                 </div>
                 <div class="form-group">
                     @Html.Label("Password", "Choose a password:")<br />
-                    @Html.TextBox("Password", null, new { @class = "form-control", @type = "password" })
+                    @Html.TextBox("Password", null, new { @class = "custom-input", @type = "password" })
                 </div>
                 <div class="form-group">
                     @Html.Label("ConfirmPassword", "Confirm password:")<br />
-                    @Html.TextBox("ConfirmPassword", null, new { @class = "form-control", @type = "password" })
+                    @Html.TextBox("ConfirmPassword", null, new { @class = "custom-input", @type = "password" })
                 </div>
                 <div>
                     <button class="btn btn-primary" name="submit" type="submit">Create Profile</button>

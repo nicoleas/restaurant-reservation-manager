@@ -23,6 +23,11 @@ namespace FinalBruResturant.Controllers
             return View("MainPage");
         }
 
+        public ActionResult About()
+        {
+            return View("About");
+        }
+
         [HttpGet]
         public ActionResult CreateProfilePage()
         {

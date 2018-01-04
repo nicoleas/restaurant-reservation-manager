@@ -209,9 +209,20 @@
     </None>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Css\CreateProfile.css" />
+    <Content Include="Css\ReservationStyle.css" />
+    <Content Include="Css\SlideShow.css" />
+    <Content Include="Css\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bar-background-4.jpg" />
+    <Content Include="Images\barbackground.jpg" />
+    <Content Include="Images\Bru.jpg" />
+    <Content Include="Images\burger.jpg" />
+    <Content Include="Images\desert.jpg" />
+    <Content Include="Images\squid.jpg" />
+    <Content Include="Images\steak.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -249,6 +260,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -271,6 +283,7 @@
     <Content Include="Views\Home\Thanks.cshtml" />
     <Content Include="Views\Home\CreateProfilePage.cshtml" />
     <Content Include="Views\Home\ConfirmationPage.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,73 +1,97 @@
 ﻿@model FinalBruResturant.Models.ReservationModel
 @{
-    ViewBag.Title = "Thanks";
+                /**/
+
+                ViewBag.Title = "Thanks";
 }
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Thanks</title>
-        <link rel="stylesheet" href="~/Content/bootstrap.css" />
-    </head>
-    <body class="text-center">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reserve a Table</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Css/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/Css/ReservationStyle.css" />
+    <link rel="stylesheet" href="~/Css/CreateProfile.css" />
+    <script type="text/javascript" src="~/Scripts/menu.js"></script>
+</head>
+<body class="backgroundView">
+    <div id="left"></div>
+    <div id="right"></div>
+    <div id="top"></div>
+    <div id="bottom"></div>
 
-        @{ 
-            string stringMonth = "";
-        }
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        @Html.ActionLink("Home", "MainPage", "Home", null, null)
+        @Html.ActionLink("About", "About", "Home", null, null)
+        <a href="#">Services</a>
+        @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
+        <a href="#">Contact</a>
+    </div>
 
-        @switch (Model.DateTime.Month) {
-            case 1:
-                stringMonth = "January";
-                break;
-            case 2:
-                stringMonth = "February";
-                break;
-            case 3:
-                stringMonth = "March";
-                break;
-            case 4:
-                stringMonth = "April";
-                break;
-            case 5:
-                stringMonth = "May";
-                break;
-            case 6:
-                stringMonth = "June";
-                break;
-            case 7:
-                stringMonth = "July";
-                break;
-            case 8:
-                stringMonth = "August";
-                break;
-            case 9:
-                stringMonth = "September";
-                break;
-            case 10:
-                stringMonth = "October";
-                break;
-            case 11:
-                stringMonth = "November";
-                break;
-            case 12:
-                stringMonth = "December";
-                break;
-            default:
-                break;
-        }
+    <div id="main">
+        <span style="font-size:40px;cursor:pointer; color:white;" onclick="openNav()">&#9776;</span>
+    </div>
 
-        <p>
-            <h1>Thank you, @Model.Name!</h1>
-            <h3>
-                Your reservation is confirmed for @stringMonth
-                @Model.DateTime.Day, @Model.DateTime.Year at @Model.DateTime.TimeOfDay for
-                @Model.NumPeople people
-            </h3>
-            <h3>We can't wait to see you!</h3>
-        </p>
+    @{
+        string stringMonth = "";
+    }
+
+    @switch (Model.DateTime.Month)
+    {
+        case 1:
+            stringMonth = "January";
+            break;
+        case 2:
+            stringMonth = "February";
+            break;
+        case 3:
+            stringMonth = "March";
+            break;
+        case 4:
+            stringMonth = "April";
+            break;
+        case 5:
+            stringMonth = "May";
+            break;
+        case 6:
+            stringMonth = "June";
+            break;
+        case 7:
+            stringMonth = "July";
+            break;
+        case 8:
+            stringMonth = "August";
+            break;
+        case 9:
+            stringMonth = "September";
+            break;
+        case 10:
+            stringMonth = "October";
+            break;
+        case 11:
+            stringMonth = "November";
+            break;
+        case 12:
+            stringMonth = "December";
+            break;
+        default:
+            break;
+    }
+
+    <p>
+        <h1>Thank you, @Model.Name!</h1>
+        <h3>
+            Your reservation is confirmed for @stringMonth
+            @Model.DateTime.Day, @Model.DateTime.Year at @Model.DateTime.TimeOfDay for
+            @Model.NumPeople people
+        </h3>
+        <h3>We can't wait to see you!</h3>
+    </p>
 
 
-    </body>
+</body>
 </html>

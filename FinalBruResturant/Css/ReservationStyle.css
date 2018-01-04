@@ -1,0 +1,34 @@
+﻿.headerColor {
+    background-color: rgb(107, 106, 106)
+}
+
+.headerText {
+    color: rgb(255, 255, 253);
+    font-weight: bold;
+    font-size: 25px;
+    background-color: rgb(130, 130, 130);
+    padding: 20px;
+    width: 800px;
+    padding: 15px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+}
+
+label {
+    color: rgb(202, 228, 239);
+    font-size: 18px;
+}
+
+.spacing {
+    width: 620px;
+    margin-left: 10px;
+    margin-right: 20px;
+    /*margin: 10px;*/
+}
+
+.custom-validation-summary {
+    color: rgb(172, 14, 14);
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}

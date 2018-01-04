@@ -1,0 +1,86 @@
+﻿#slider, .wrap, slide-content {
+    margin: auto;
+    width: 1000px;
+    padding: 10px;
+    padding-left: 50px;
+}
+
+
+
+.slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide1{background-image: url('../Images/Bru.jpg');}
+.slide2{background-image: url('../Images/steak.jpg');}
+.slide3{background-image: url('../Images/burger.jpg');}
+.slide4{background-image: url('../Images/desert.jpg');}
+.slide5{background-image: url('../Images/squid.jpg');}
+
+.slide.slide1 {
+    height: 400px;
+    width: 800px;
+    border: 2px solid
+}
+.slide.slide2 {
+    height: 400px;
+    width: 800px ;
+    border: 2px solid;
+}
+.slide.slide3 {
+    height: 400px;
+    width: 800px;
+    border: 2px solid;
+}
+.slide.slide4 {
+    height: 400px;
+    width: 800px;
+    border: 2px solid;
+}
+.slide.slide5 {
+    height: 400px;
+    width: 800px;
+    border: 2px solid;
+}
+
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.slide-content span {
+    font-size: 5rem;
+    color:aliceblue;
+}
+
+.arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    width: 0;
+    height: 5%;
+    border-style: solid;
+}
+
+#arrow-left {
+
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 30px solid white;
+    left: 0;
+    margin-left: 325px;
+}
+
+#arrow-right {
+    right: 0;
+    margin-right: 325px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid white;
+}

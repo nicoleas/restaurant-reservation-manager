@@ -1,0 +1,107 @@
+﻿body.backgroundView {
+    color: darkslategrey
+}
+
+.backgroundView {
+    background-color: rgba(56, 56, 56, 0.99);
+    background-size: cover;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#top, #bottom, #left, #right {
+    background-image: url("../../Images/bar-background-4.jpg");
+    position: fixed;
+}
+
+#left, #right {
+    top: 0;
+    bottom: 0;
+    width: 15px;
+}
+
+#left {
+    left: 0;
+}
+
+#right {
+    right: 0;
+}
+
+#top, #bottom {
+    left: 0;
+    right: 0;
+    height: 15px;
+}
+
+#top {
+    top: 0;
+}
+
+#bottom {
+    bottom: 0;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 14px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+#main {
+    transition: margin-left .5s;
+    padding: 25px;
+}
+
+.aboutBru {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: aliceblue;
+    width: 500px;
+    padding: 50px;
+    border: 5px solid #808080;
+    margin: 10px auto 10px auto;
+    font-size: 18px;
+}
+
+h3 {
+    width: 700px;
+    padding: 15px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    color: aliceblue;
+    background-color: #808080;
+}
+ 
