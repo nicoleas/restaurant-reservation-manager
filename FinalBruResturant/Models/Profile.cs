@@ -19,7 +19,6 @@ namespace FinalBruResturant.Models
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
-        [DataType(DataType.PhoneNumber)]
         [RegularExpression("^[0-9]{10}$", ErrorMessage = "Phone number must be 10 digits with no spaces")]
         [StringLength(32)]
         [Required(ErrorMessage = "Please enter your phone number")]

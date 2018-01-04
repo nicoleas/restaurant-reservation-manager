@@ -312,10 +312,22 @@ namespace FinalBruResturant.ResturantService {
         System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
-        void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation);
+        void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
-        System.Threading.Tasks.Task InsertIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation);
+        System.Threading.Tasks.Task InsertIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertReservationIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertReservationIntoDBResponse")]
+        void InsertReservationIntoDB(FinalBruResturant.ResturantService.Reservation reservation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertReservationIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertReservationIntoDBResponse")]
+        System.Threading.Tasks.Task InsertReservationIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertUserIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertUserIntoDBResponse")]
+        void InsertUserIntoDB(FinalBruResturant.ResturantService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertUserIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertUserIntoDBResponse")]
+        System.Threading.Tasks.Task InsertUserIntoDBAsync(FinalBruResturant.ResturantService.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -361,12 +373,28 @@ namespace FinalBruResturant.ResturantService {
             return base.Channel.findAllReservationsAsync();
         }
         
-        public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation) {
-            base.Channel.InsertIntoDB(reservation);
+        public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {
+            base.Channel.InsertIntoDB(reservation, user);
         }
         
-        public System.Threading.Tasks.Task InsertIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation) {
-            return base.Channel.InsertIntoDBAsync(reservation);
+        public System.Threading.Tasks.Task InsertIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {
+            return base.Channel.InsertIntoDBAsync(reservation, user);
+        }
+        
+        public void InsertReservationIntoDB(FinalBruResturant.ResturantService.Reservation reservation) {
+            base.Channel.InsertReservationIntoDB(reservation);
+        }
+        
+        public System.Threading.Tasks.Task InsertReservationIntoDBAsync(FinalBruResturant.ResturantService.Reservation reservation) {
+            return base.Channel.InsertReservationIntoDBAsync(reservation);
+        }
+        
+        public void InsertUserIntoDB(FinalBruResturant.ResturantService.User user) {
+            base.Channel.InsertUserIntoDB(user);
+        }
+        
+        public System.Threading.Tasks.Task InsertUserIntoDBAsync(FinalBruResturant.ResturantService.User user) {
+            return base.Channel.InsertUserIntoDBAsync(user);
         }
     }
 }

@@ -25,6 +25,18 @@
   <wsdl:message name="IResturantService_InsertIntoDB_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertIntoDBResponse" />
   </wsdl:message>
+  <wsdl:message name="IResturantService_InsertReservationIntoDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReservationIntoDB" />
+  </wsdl:message>
+  <wsdl:message name="IResturantService_InsertReservationIntoDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReservationIntoDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResturantService_InsertUserIntoDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserIntoDB" />
+  </wsdl:message>
+  <wsdl:message name="IResturantService_InsertUserIntoDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserIntoDBResponse" />
+  </wsdl:message>
   <wsdl:portType name="IResturantService">
     <wsdl:operation name="findAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/findAllUsers" message="tns:IResturantService_findAllUsers_InputMessage" />
@@ -37,6 +49,14 @@
     <wsdl:operation name="InsertIntoDB">
       <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/InsertIntoDB" message="tns:IResturantService_InsertIntoDB_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/InsertIntoDBResponse" message="tns:IResturantService_InsertIntoDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertReservationIntoDB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/InsertReservationIntoDB" message="tns:IResturantService_InsertReservationIntoDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/InsertReservationIntoDBResponse" message="tns:IResturantService_InsertReservationIntoDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserIntoDB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/InsertUserIntoDB" message="tns:IResturantService_InsertUserIntoDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/InsertUserIntoDBResponse" message="tns:IResturantService_InsertUserIntoDB_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IResturantService" type="tns:IResturantService">
@@ -61,6 +81,24 @@
     </wsdl:operation>
     <wsdl:operation name="InsertIntoDB">
       <soap:operation soapAction="http://tempuri.org/IResturantService/InsertIntoDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertReservationIntoDB">
+      <soap:operation soapAction="http://tempuri.org/IResturantService/InsertReservationIntoDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserIntoDB">
+      <soap:operation soapAction="http://tempuri.org/IResturantService/InsertUserIntoDB" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

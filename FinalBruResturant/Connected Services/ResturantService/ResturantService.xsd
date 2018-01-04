@@ -29,10 +29,35 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/FinalBruResturantWCFService" minOccurs="0" name="reservation" nillable="true" type="q3:Reservation" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FinalBruResturantWCFService" minOccurs="0" name="user" nillable="true" type="q4:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertIntoDBResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertReservationIntoDB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FinalBruResturantWCFService" minOccurs="0" name="reservation" nillable="true" type="q5:Reservation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertReservationIntoDBResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUserIntoDB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FinalBruResturantWCFService" minOccurs="0" name="user" nillable="true" type="q6:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUserIntoDBResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

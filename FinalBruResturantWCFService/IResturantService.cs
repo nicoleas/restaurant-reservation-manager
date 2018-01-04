@@ -19,7 +19,13 @@ namespace FinalBruResturantWCFService
         List<Reservation> findAllReservations();
 
         [OperationContract]
-        void InsertIntoDB(Reservation reservation);
+        void InsertIntoDB(Reservation reservation, User user);
+
+        [OperationContract]
+        void InsertReservationIntoDB(Reservation reservation);
+
+        [OperationContract]
+        void InsertUserIntoDB(User user);
 
     }
 }
