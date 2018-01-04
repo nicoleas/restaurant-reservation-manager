@@ -35,10 +35,7 @@ namespace FinalBruResturant.ResturantService {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FinalBruResturant.ResturantService.Reservation[] ReservationsField;
+        private string PhoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> RewardPointsField;
@@ -112,27 +109,14 @@ namespace FinalBruResturant.ResturantService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Phone {
+        public string Phone {
             get {
                 return this.PhoneField;
             }
             set {
-                if ((this.PhoneField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
                     this.PhoneField = value;
                     this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public FinalBruResturant.ResturantService.Reservation[] Reservations {
-            get {
-                return this.ReservationsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReservationsField, value) != true)) {
-                    this.ReservationsField = value;
-                    this.RaisePropertyChanged("Reservations");
                 }
             }
         }
@@ -205,9 +189,6 @@ namespace FinalBruResturant.ResturantService {
         private int ReservationIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FinalBruResturant.ResturantService.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -255,19 +236,6 @@ namespace FinalBruResturant.ResturantService {
                 if ((this.ReservationIdField.Equals(value) != true)) {
                     this.ReservationIdField = value;
                     this.RaisePropertyChanged("ReservationId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public FinalBruResturant.ResturantService.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
                 }
             }
         }

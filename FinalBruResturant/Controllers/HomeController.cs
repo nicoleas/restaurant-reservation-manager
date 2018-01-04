@@ -12,8 +12,9 @@ namespace FinalBruResturant.Controllers
     {
         private ResturantServiceClient client = new ResturantServiceClient();
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
+            ViewBag.listAllUsers = client.findAllUsers();
             return View("MainPage");
         }
 
@@ -43,9 +44,10 @@ namespace FinalBruResturant.Controllers
                 user.FirstName = profile.FirstName;
                 user.LastName = profile.LastName;
                 user.Email = profile.Email;
-                user.Phone = Convert.ToInt64(profile.Phone);
+                user.Phone = profile.Phone;
                 user.Username = profile.Username;
                 user.Password = profile.Password;
+                user.RewardPoints = null;
 
                 client.InsertUserIntoDB(user);
 
