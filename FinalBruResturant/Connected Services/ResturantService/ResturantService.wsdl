@@ -19,6 +19,12 @@
   <wsdl:message name="IResturantService_findAllReservations_OutputMessage">
     <wsdl:part name="parameters" element="tns:findAllReservationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IResturantService_findUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:findUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IResturantService_findUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:findUserByUsernameResponse" />
+  </wsdl:message>
   <wsdl:message name="IResturantService_InsertIntoDB_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertIntoDB" />
   </wsdl:message>
@@ -46,6 +52,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/findAllReservations" message="tns:IResturantService_findAllReservations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/findAllReservationsResponse" message="tns:IResturantService_findAllReservations_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="findUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/findUserByUsername" message="tns:IResturantService_findUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/findUserByUsernameResponse" message="tns:IResturantService_findUserByUsername_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertIntoDB">
       <wsdl:input wsaw:Action="http://tempuri.org/IResturantService/InsertIntoDB" message="tns:IResturantService_InsertIntoDB_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IResturantService/InsertIntoDBResponse" message="tns:IResturantService_InsertIntoDB_OutputMessage" />
@@ -72,6 +82,15 @@
     </wsdl:operation>
     <wsdl:operation name="findAllReservations">
       <soap:operation soapAction="http://tempuri.org/IResturantService/findAllReservations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findUserByUsername">
+      <soap:operation soapAction="http://tempuri.org/IResturantService/findUserByUsername" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

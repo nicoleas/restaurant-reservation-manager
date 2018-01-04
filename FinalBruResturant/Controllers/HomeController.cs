@@ -25,6 +25,32 @@ namespace FinalBruResturant.Controllers
         }
 
         [HttpGet]
+        public ActionResult LoginPage()
+        {
+                return View("LoginPage");
+        }
+
+        public ActionResult LoginPage(Login login)
+        {
+            String username = login.Username;
+            String password = login.Password;
+
+            if (ModelState.IsValid)
+            {
+                if (client.findUserByUsername(username).Count() == 1)
+                {
+                    User userAttempt = client.findUserByUsername(username)[0];
+                    ViewBag.currentUser = userAttempt;
+                }
+                else
+                {
+                    ViewBag.currentUser = null;
+                }
+            }
+                return View("MainPage");
+        }
+
+        [HttpGet]
         public ActionResult CreateProfilePage()
         {
             return View("CreateProfilePage");
@@ -35,8 +61,6 @@ namespace FinalBruResturant.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                String sender = Request.Form["submit"]; //store retrieved values from form
 
                 //insert into database using entity framework
                 User user = new User();
@@ -74,8 +98,6 @@ namespace FinalBruResturant.Controllers
             {
 
                 int fakeId = 0;
-
-                String sender = Request.Form["submit"]; //store retrieved values from form
 
                 Reservation reservation = new Reservation();
 

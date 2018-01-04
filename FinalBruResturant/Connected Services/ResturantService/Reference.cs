@@ -279,6 +279,12 @@ namespace FinalBruResturant.ResturantService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findAllReservations", ReplyAction="http://tempuri.org/IResturantService/findAllReservationsResponse")]
         System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
+        FinalBruResturant.ResturantService.User[] findUserByUsername(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
+        System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
         void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
         
@@ -339,6 +345,14 @@ namespace FinalBruResturant.ResturantService {
         
         public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync() {
             return base.Channel.findAllReservationsAsync();
+        }
+        
+        public FinalBruResturant.ResturantService.User[] findUserByUsername(string username) {
+            return base.Channel.findUserByUsername(username);
+        }
+        
+        public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username) {
+            return base.Channel.findUserByUsernameAsync(username);
         }
         
         public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {

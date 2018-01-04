@@ -23,6 +23,11 @@ namespace FinalBruResturantWCFService
             return entities.Users.ToList();
         }
 
+        public List<User> findUserByUsername(String username)
+        {
+            return entities.Users.ToList();
+        }
+
 
         public void InsertIntoDB(Reservation reservation, User user)
         {

@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +272,7 @@
     <Content Include="Views\Home\Thanks.cshtml" />
     <Content Include="Views\Home\CreateProfilePage.cshtml" />
     <Content Include="Views\Home\ConfirmationPage.cshtml" />
+    <Content Include="Views\Home\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
