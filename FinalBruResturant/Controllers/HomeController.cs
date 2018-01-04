@@ -1,4 +1,5 @@
 ﻿using FinalBruResturant.Models;
+using FinalBruResturant.ResturantService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace FinalBruResturant.Controllers
 {
     public class HomeController : Controller
     {
+        private ResturantServiceClient client = new ResturantServiceClient();
+
         public ActionResult Index()
         {
             return View("MainPage");
@@ -34,10 +37,28 @@ namespace FinalBruResturant.Controllers
 
                 String sender = Request.Form["submit"]; //store retrieved values from form
 
-                //ENTITY FRAMEWORK
-                /*
-                Student student = new Student();
 
+
+                //ENTITY FRAMEWORK
+
+                User user = new User();
+
+                user.FirstName = profile.FirstName;
+                user.LastName = profile.LastName;
+                user.Email = profile.Email;
+                //user.Phone = profile.Phone;
+                user.Username = profile.Username;
+                
+                /*
+                if(profile.Password1 == profile.Password2)
+                {
+                    user.Password = profile.Password1;
+                } else
+                {
+                    return View("CreateProfilePage");
+                }
+
+                /*
                 student.StudentId = studentId + 1;
                 student.Name = studentResponse.Name;
                 student.Email = studentResponse.Email;
@@ -83,16 +104,17 @@ namespace FinalBruResturant.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReservationsPage(Reservation reservation)
+        public ActionResult ReservationsPage(ReservationModel reservationModel)
         {
             if (ModelState.IsValid)
             {
 
                 String sender = Request.Form["submit"]; //store retrieved values from form
 
+                
+
                 //ENTITY FRAMEWORK
-                /*
-                Student student = new Student();
+                /*Student student = new Student();
 
                 student.StudentId = studentId + 1;
                 student.Name = studentResponse.Name;
@@ -122,7 +144,7 @@ namespace FinalBruResturant.Controllers
                 client.InsertIntoDB(student, attend);
                 */
 
-                return View("Thanks", reservation);
+                return View("Thanks", reservationModel);
 
             }
             else

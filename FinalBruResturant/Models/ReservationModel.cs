@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FinalBruResturant.Models
 {
-    public class Reservation
+    public class ReservationModel
     {
         [Required(ErrorMessage = "Please pick a date and time")]
         public DateTime DateTime { get; set; }

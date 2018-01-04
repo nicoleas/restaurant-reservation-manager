@@ -36,14 +36,19 @@
                 <div class="form-group">
                     @Html.Label("Phone", "Phone Number:")<br />
                     @Html.TextBox("Phone", null, new { @class = "form-control" })
+                    @Html.Label("PhoneDetails", "10 digits, no spaces")
                 </div>
                 <div class="form-group">
-                    @Html.Label("Password1", "Password:")<br />
-                    @Html.TextBox("Password1", null, new { @class = "form-control", @type = "password" })
+                    @Html.Label("Username", "Choose a username:")<br />
+                    @Html.TextBox("Username", null, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.Label("Password2", "Confirm password:")<br />
-                    @Html.TextBox("Password2", null, new { @class = "form-control", @type = "password" })
+                    @Html.Label("Password", "Choose a password:")<br />
+                    @Html.TextBox("Password", null, new { @class = "form-control", @type = "password" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("ConfirmPassword", "Confirm password:")<br />
+                    @Html.TextBox("ConfirmPassword", null, new { @class = "form-control", @type = "password" })
                 </div>
                 <div>
                     <button class="btn btn-primary" name="submit" type="submit">Create Profile</button>
