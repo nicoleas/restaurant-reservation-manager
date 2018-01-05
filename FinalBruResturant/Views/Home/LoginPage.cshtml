@@ -18,11 +18,13 @@
     <div class="panel panel-primary">
         <div class="panel-heading text-center"><h4>Login</h4></div>
         <div class="panel-body">
+
+            <!--If the username and/or password is incorrect-->
             @if(ViewBag.currentUser == "wrongCredentials")
             {
                 <p style="color:red;">Your username and/or password is incorrect</p>
             }
-
+            <!--If the user is not signed in they can not reserve a table-->
             @if (ViewBag.message == "notSignedIn")
             {
                 <p style="color:red;">You must be signed in to reserve a table</p>

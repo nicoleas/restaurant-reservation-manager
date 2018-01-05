@@ -1,8 +1,6 @@
 ﻿@model FinalBruResturant.Models.ReservationModel
 @{
-                /**/
-
-                ViewBag.Title = "Thanks";
+    ViewBag.Title = "Thanks";
 }
 
 <!DOCTYPE html>
@@ -39,7 +37,8 @@
     @{
         string stringMonth = "";
     }
-
+    <!--Model.DateTime.Month returns a integer value, so this switch statement
+        makes it easier to read by giving it a string value-->
     @switch (Model.DateTime.Month)
     {
         case 1:
@@ -91,7 +90,5 @@
         </h3>
         <h3>We can't wait to see you!</h3>
     </p>
-
-
 </body>
 </html>

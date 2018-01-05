@@ -99,28 +99,6 @@
 
         startSlide();
     </script>
-
-    @*<div class="panel panel-primary">
-        <div class="border">
-
-        </div>
-        <div class="panel-heading text-center"><h4>Login</h4></div>
-            <div class="panel-body">
-                @using (Html.BeginForm())
-                {
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.Label("Username", "Username:")<br />
-                    @Html.TextBox("Username", null, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Password", "Password:")<br />
-                    @Html.TextBox("Password", null, new { @class = "form-control", @type = "password" })
-                </div>
-                @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null)
-                }
-            </div>
-        </div>*@
 </body>
 </html>
 

@@ -10,6 +10,5 @@ namespace FinalBruResturant.Models
         public Login LoginModel { get; set; }
         public ReservationModel ReservationModel { get; set; }
         public Profile ProfileModel { get; set; }
-
     }
 }

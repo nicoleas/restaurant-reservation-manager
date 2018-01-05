@@ -14,6 +14,5 @@ namespace FinalBruResturant.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "Please select the number of people")]
         public int NumPeople { get; set; }
-        
     }
 }

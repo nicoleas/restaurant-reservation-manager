@@ -9,8 +9,6 @@ namespace FinalBruResturant.Models
 {
     public class Profile
     {
-        public bool LoggedIn = true;
-
         [Required(ErrorMessage = "Please enter your first name")]
         public string FirstName { get; set; }
 
@@ -40,12 +38,5 @@ namespace FinalBruResturant.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Please retype your password")]
         public string ConfirmPassword { get; set; }
-
-
-    
-        public void Logout()
-        {
-            LoggedIn = false;
-        }
     }
 }
