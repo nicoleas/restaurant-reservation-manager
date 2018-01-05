@@ -53,7 +53,7 @@ namespace FinalBruResturant.Controllers
             {
                 currentUser = client.findUserByUsername(username, password);
                 ViewBag.currentUser = currentUser;
-                currentUserCookie.Value = currentUser.FirstName;
+                currentUserCookie.Value = currentUser.UserId.ToString();
                 Response.Cookies.Add(currentUserCookie);
             }
             else
@@ -148,7 +148,7 @@ namespace FinalBruResturant.Controllers
                     reservation.Name = reservationModel.Name;
                     reservation.DateTime = reservationModel.DateTime;
                     reservation.NumPeople = reservationModel.NumPeople;
-                    reservation.UserId = ViewBag.currentUser.UserId;
+                    reservation.UserId = Convert.ToInt32(userRequestCookie.Value);
 
                     client.InsertReservationIntoDB(reservation);
 
