@@ -13,10 +13,10 @@ namespace FinalBruResturantWCFService
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BruResturantDBEntities : DbContext
+    public partial class BruRestaurantDBEntities : DbContext
     {
-        public BruResturantDBEntities()
-            : base("name=BruResturantDBEntities")
+        public BruRestaurantDBEntities()
+            : base("name=BruRestaurantDBEntities")
         {
         }
     

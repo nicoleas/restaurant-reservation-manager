@@ -11,7 +11,7 @@ namespace FinalBruResturantWCFService
     // NOTE: In order to launch WCF Test Client for testing this service, please select ResturantService.svc or ResturantService.svc.cs at the Solution Explorer and start debugging.
     public class ResturantService : IResturantService
     {
-        private BruResturantDBEntities entities = new BruResturantDBEntities();
+        private BruRestaurantDBEntities entities = new BruRestaurantDBEntities();
 
         public List<Reservation> findAllReservations()
         {

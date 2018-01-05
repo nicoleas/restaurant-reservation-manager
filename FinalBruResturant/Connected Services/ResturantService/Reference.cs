@@ -38,7 +38,7 @@ namespace FinalBruResturant.ResturantService {
         private string PhoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> RewardPointsField;
+        private string RewardPointsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
@@ -122,12 +122,12 @@ namespace FinalBruResturant.ResturantService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> RewardPoints {
+        public string RewardPoints {
             get {
                 return this.RewardPointsField;
             }
             set {
-                if ((this.RewardPointsField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.RewardPointsField, value) != true)) {
                     this.RewardPointsField = value;
                     this.RaisePropertyChanged("RewardPoints");
                 }
@@ -183,13 +183,16 @@ namespace FinalBruResturant.ResturantService {
         private System.DateTime DateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumPeopleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReservationIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIdField;
+        private System.Nullable<int> UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -210,6 +213,19 @@ namespace FinalBruResturant.ResturantService {
                 if ((this.DateTimeField.Equals(value) != true)) {
                     this.DateTimeField = value;
                     this.RaisePropertyChanged("DateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -241,7 +257,7 @@ namespace FinalBruResturant.ResturantService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId {
+        public System.Nullable<int> UserId {
             get {
                 return this.UserIdField;
             }

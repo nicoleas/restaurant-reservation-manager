@@ -17,6 +17,7 @@ namespace FinalBruResturantWCFService
         public int ReservationId { get; set; }
         public int NumPeople { get; set; }
         public System.DateTime DateTime { get; set; }
-        public int UserId { get; set; }
+        public Nullable<int> UserId { get; set; }
+        public string Name { get; set; }
     }
 }
