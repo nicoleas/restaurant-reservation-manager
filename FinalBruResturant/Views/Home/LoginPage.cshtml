@@ -18,6 +18,11 @@
     <div class="panel panel-primary">
         <div class="panel-heading text-center"><h4>Login</h4></div>
         <div class="panel-body">
+            @if(ViewBag.currentUser == "wrongCredentials")
+            {
+                <p style="color:red;">Your username and/or password is incorrect</p>
+            }
+
             @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
             {
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
