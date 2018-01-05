@@ -23,6 +23,11 @@
                 <p style="color:red;">Your username and/or password is incorrect</p>
             }
 
+            @if (ViewBag.message == "notSignedIn")
+            {
+                <p style="color:red;">You must be signed in to reserve a table</p>
+            }
+
             @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
             {
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })

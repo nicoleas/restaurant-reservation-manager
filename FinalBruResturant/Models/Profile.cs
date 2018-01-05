@@ -38,7 +38,6 @@ namespace FinalBruResturant.Models
 
         [Compare("Password")]
         [DataType(DataType.Password)]
-        [StringLength(255, MinimumLength = 8)]
         [Required(ErrorMessage = "Please retype your password")]
         public string ConfirmPassword { get; set; }
 

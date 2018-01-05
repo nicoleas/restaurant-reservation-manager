@@ -39,6 +39,21 @@ namespace FinalBruResturantWCFService
             }
         }
 
+        public String findEmailByUserId(int userId)
+        {
+            List<User> userList = entities.Users.Where(u => (u.UserId == userId)).ToList();
+
+
+            //if there is exactly one user with that same username and matching password
+            if (entities.Users.Where(u => (u.UserId == userId)).Count() == 1)
+            {
+                return userList[0].Email;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public void InsertIntoDB(Reservation reservation, User user)
         {

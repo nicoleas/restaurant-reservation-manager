@@ -80,7 +80,7 @@ namespace FinalBruResturant.Controllers
 
             loginRequestCookie = Request.Cookies["loginSentBy"];
 
-            if (loginRequestCookie.Value == "reservationsPage")
+            if (loginRequestCookie != null)
             {
                 return View("ReservationsPage");
             }
@@ -120,6 +120,11 @@ namespace FinalBruResturant.Controllers
 
                 client.InsertUserIntoDB(user);
 
+                currentUser = client.findUserByUsername(profile.Username, profile.Password);
+                ViewBag.currentUser = user;
+                currentUserCookie.Value = currentUser.UserId.ToString();
+                Response.Cookies.Add(currentUserCookie);
+
                 return View("ConfirmationPage"/*,profile*/);
 
             }
@@ -151,7 +156,7 @@ namespace FinalBruResturant.Controllers
                 {
                     loginCookie.Value = "reservationsPage";
                     Response.Cookies.Add(loginCookie);
-                    //ViewBag.loginSentBy = "reservationsPage";
+                    ViewBag.message= "notSignedIn";
                     return View("LoginPage");
                 }
                 else

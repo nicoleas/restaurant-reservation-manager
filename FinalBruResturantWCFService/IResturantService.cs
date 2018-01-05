@@ -22,6 +22,9 @@ namespace FinalBruResturantWCFService
         User findUserByUsername(String username, String password);
 
         [OperationContract]
+        String findEmailByUserId(int userId);
+
+        [OperationContract]
         void InsertIntoDB(Reservation reservation, User user);
 
         [OperationContract]

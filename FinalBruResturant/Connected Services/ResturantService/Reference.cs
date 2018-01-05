@@ -301,6 +301,12 @@ namespace FinalBruResturant.ResturantService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
         System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User> findUserByUsernameAsync(string username, string password);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findEmailByUserId", ReplyAction="http://tempuri.org/IResturantService/findEmailByUserIdResponse")]
+        string findEmailByUserId(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findEmailByUserId", ReplyAction="http://tempuri.org/IResturantService/findEmailByUserIdResponse")]
+        System.Threading.Tasks.Task<string> findEmailByUserIdAsync(int userId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
         void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
         
@@ -369,6 +375,14 @@ namespace FinalBruResturant.ResturantService {
         
         public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User> findUserByUsernameAsync(string username, string password) {
             return base.Channel.findUserByUsernameAsync(username, password);
+        }
+        
+        public string findEmailByUserId(int userId) {
+            return base.Channel.findEmailByUserId(userId);
+        }
+        
+        public System.Threading.Tasks.Task<string> findEmailByUserIdAsync(int userId) {
+            return base.Channel.findEmailByUserIdAsync(userId);
         }
         
         public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {
