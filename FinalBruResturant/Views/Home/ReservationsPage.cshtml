@@ -1,8 +1,10 @@
 ﻿@using FinalBruResturant.Models
+@using FinalBruResturant.Controllers
 @model FinalBruResturant.Models.ReservationParentModel
 @{
     ViewBag.Title = "ReservationsPage";
 }
+
 <!DOCTYPE html>
 
 <html>
@@ -27,7 +29,7 @@
             @Html.ActionLink("About", "About", "Home", null, null)
             <a href="#">Services</a>
             @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
-            <a href="#">Contact</a>
+            <a href="#">Contact</a>                
         </div>
 
         <div id="main">
@@ -38,31 +40,39 @@
             <div class="row panel-body">
                 <div class="borderSurround">
                     <div class="col-md-6 d panel-default spacing">
-                        <div class="panel-heading"><h4>Reserve as Guest</h4></div>
-                        @using (Html.BeginForm("ReservationsPage", "Home", FormMethod.Post))
-                         {
-                            @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
-                            <div class="form-group">
-                                @Html.Label("Name", "Name:")<br />
-                                @Html.TextBox("Name", null, new { @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("DateTime", "Date and Time:")<br />
-                                @Html.TextBox("DateTime", null, new { @id = "datetime", @class = "form-control", @type = "datetime-local" })
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("NumPeople", "Number of People:")<br />
-                                @Html.TextBox("NumPeople", null, new { @class = "form-control", @type = "number", @min = "1", @max = "16" })
 
-                                @Html.Label("Info", "For tables larger than 16 persons please contact the resturant directly.")
-                            </div>
+                        @if(Request.Cookies["cookieName"].Value == "false")
+                        {
                             <div>
-                                <button class="btn-lg btn-primary" name="submit" value="asGuest" type="submit">Make Reservation</button>
+                                @Html.Label("You must be signed in to reserve a table", new { @class = "custom-validation-summary" })<br />
+                                @Html.ActionLink("Login", "LoginPage", "Home", null, null) or
+                                @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null).
                             </div>
-                         }
+                        }
+
+                        <div class="hiddenForm">
+                            @using (Html.BeginForm("ReservationsPage", "Home", FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
+                                <div class="form-group">
+                                    @Html.Label("DateTime", "Date and Time:")<br />
+                                    @Html.TextBox("DateTime", null, new { @id = "datetime", @class = "form-control", @type = "datetime-local" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("NumPeople", "Number of People:")<br />
+                                    @Html.TextBox("NumPeople", null, new { @class = "form-control", @type = "number", @min = "1", @max = "16" })
+
+                                    @Html.Label("Info", "For tables larger than 16 persons please contact the resturant directly.")
+                                </div>
+                                <div>
+                                    <button class="btn-lg btn-primary" name="submit" value="asGuest" type="submit">Make Reservation</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 d panel-default ">
+
+                @*<div class="col-md-6 d panel-default ">
                     <div class="panel-heading"><h4>Login to Reserve</h4></div>
                     @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
                     {
@@ -80,7 +90,8 @@
                         </div>
                     }
                     @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null)
-                </div>
+                </div>*@
+                
             </div>
         </div>
     </body>

@@ -7,8 +7,9 @@ namespace FinalBruResturant.Models
 {
     public class ReservationParentModel
     {
-        public Login Model1 { get; set; }
-        public ReservationModel Model2 { get; set; }
+        public Login LoginModel { get; set; }
+        public ReservationModel ReservationModel { get; set; }
+        public Profile ProfileModel { get; set; }
 
     }
 }

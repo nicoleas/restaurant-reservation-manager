@@ -11,6 +11,7 @@ namespace FinalBruResturant.Controllers
     public class HomeController : Controller
     {
         private ResturantServiceClient client = new ResturantServiceClient();
+        User currentUser;
 
         public ViewResult Index()
         {
@@ -37,7 +38,7 @@ namespace FinalBruResturant.Controllers
         [HttpGet]
         public ActionResult LoginPage()
         {
-                return View("LoginPage");
+            return View("LoginPage");
         }
 
         [HttpPost]
@@ -46,32 +47,26 @@ namespace FinalBruResturant.Controllers
             String username = login.Username;
             String password = login.Password;
             String sender = Request.Form["submit"]; //store retrieved values from form
+            HttpCookie cookie = new HttpCookie("cookieName");
+            cookie.Expires = DateTime.Now.AddDays(1); 
 
             if (ModelState.IsValid)
             {
-                User currentUser = client.findUserByUsername(username, password);
+                currentUser = client.findUserByUsername(username, password);
                 ViewBag.currentUser = currentUser;
+
+                cookie.Value = "true";
+                Response.Cookies.Add(cookie);
+
             }
             else
             {
                 ViewBag.currentUser = null;
+
+                cookie.Value = "false";
+                Response.Cookies.Add(cookie);
             }
 
-            /*
-            //to determine which form the user filled out
-            switch (sender)
-            {
-                case "asUser": //student will attend party
-                    return View("MainPage")
-                    break;
-                case "asGuest": // student cannot attend party
-                    studentResponse.WillAttend = false;
-                    break;
-                default:
-                    studentResponse.WillAttend = false;
-                    break;
-            }
-            */
             return View("MainPage");
         }
         #endregion
@@ -103,7 +98,7 @@ namespace FinalBruResturant.Controllers
 
                 client.InsertUserIntoDB(user);
 
-                return View("ConfirmationPage", profile);
+                return View("ConfirmationPage"/*,profile*/);
 
             }
             else
@@ -127,15 +122,11 @@ namespace FinalBruResturant.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                int fakeId = 0;
-
                 Reservation reservation = new Reservation();
+
 
                 reservation.DateTime = reservationModel.DateTime;
                 reservation.NumPeople = reservationModel.NumPeople;
-                //TODO: Use UserId from people who make reservation (0 for guest)
-                reservation.UserId = fakeId+1;
 
                 client.InsertReservationIntoDB(reservation);
 
