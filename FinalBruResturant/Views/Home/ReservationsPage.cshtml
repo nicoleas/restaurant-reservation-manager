@@ -41,19 +41,25 @@
                 <div class="borderSurround">
                     <div class="col-md-6 d panel-default spacing">
 
-                        @if(Request.Cookies["cookieName"].Value == "false")
+                        @*@if(Request.Cookies["cookieName"].Value == "false")
                         {
                             <div>
                                 @Html.Label("You must be signed in to reserve a table", new { @class = "custom-validation-summary" })<br />
                                 @Html.ActionLink("Login", "LoginPage", "Home", null, null) or
                                 @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null).
                             </div>
-                        }
+                        }*@
 
-                        <div class="hiddenForm">
+                        @*<p class="custom-validation-summary">@ViewBag.canReserve</p>*@
+
+                        <div @*class="hiddenForm"*@>
                             @using (Html.BeginForm("ReservationsPage", "Home", FormMethod.Post))
                             {
                                 @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
+                                <div class="form-group">
+                                    @Html.Label("Name", "Name:")<br />
+                                    @Html.TextBox("Name", null, new { @class = "form-control" })
+                                </div>
                                 <div class="form-group">
                                     @Html.Label("DateTime", "Date and Time:")<br />
                                     @Html.TextBox("DateTime", null, new { @id = "datetime", @class = "form-control", @type = "datetime-local" })

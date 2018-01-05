@@ -12,10 +12,12 @@ namespace FinalBruResturant.Controllers
     {
         private ResturantServiceClient client = new ResturantServiceClient();
         User currentUser;
+        HttpCookie currentUserCookie = new HttpCookie("user");
 
         public ViewResult Index()
         {
             ViewBag.listAllUsers = client.findAllUsers();
+            currentUserCookie.Expires = DateTime.Now.AddDays(1);
             return View("MainPage");
         }
 
@@ -42,32 +44,38 @@ namespace FinalBruResturant.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginPage(Login login)
+        public ActionResult LoginPage(Login login, String sender = null)
         {
             String username = login.Username;
             String password = login.Password;
-            String sender = Request.Form["submit"]; //store retrieved values from form
-            HttpCookie cookie = new HttpCookie("cookieName");
-            cookie.Expires = DateTime.Now.AddDays(1); 
 
             if (ModelState.IsValid)
             {
                 currentUser = client.findUserByUsername(username, password);
                 ViewBag.currentUser = currentUser;
-
-                cookie.Value = "true";
-                Response.Cookies.Add(cookie);
-
+                currentUserCookie.Value = currentUser.FirstName;
+                Response.Cookies.Add(currentUserCookie);
             }
             else
             {
-                ViewBag.currentUser = null;
+                //ViewBag.currentUser = null;
 
-                cookie.Value = "false";
-                Response.Cookies.Add(cookie);
+                //there is a validation error
+                return View();
             }
 
-            return View("MainPage");
+            HttpCookie loginRequestCookie = Request.Cookies["loginSentBy"];
+
+            if(loginRequestCookie.Value == "reservationsPage")
+            {
+                return View("ReservationsPage");
+            }
+            else
+            {
+                return View("MainPage");
+            }
+
+            
         }
         #endregion
 
@@ -123,14 +131,29 @@ namespace FinalBruResturant.Controllers
             if (ModelState.IsValid)
             {
                 Reservation reservation = new Reservation();
+                HttpCookie loginCookie = new HttpCookie("loginSentBy");
+                loginCookie.Expires = DateTime.Now.AddDays(1);
 
+                HttpCookie userRequestCookie = Request.Cookies["user"];
 
-                reservation.DateTime = reservationModel.DateTime;
-                reservation.NumPeople = reservationModel.NumPeople;
+                if (userRequestCookie == null)
+                {
+                    loginCookie.Value = "reservationsPage";
+                    Response.Cookies.Add(loginCookie);
+                    //ViewBag.loginSentBy = "reservationsPage";
+                    return View("LoginPage");
+                }
+                else
+                {
+                    reservation.Name = reservationModel.Name;
+                    reservation.DateTime = reservationModel.DateTime;
+                    reservation.NumPeople = reservationModel.NumPeople;
+                    reservation.UserId = ViewBag.currentUser.UserId;
 
-                client.InsertReservationIntoDB(reservation);
+                    client.InsertReservationIntoDB(reservation);
 
-                return View("Thanks", reservationModel);
+                    return View("Thanks", reservationModel);
+                }
 
             }
             else
