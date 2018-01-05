@@ -21,8 +21,6 @@ namespace FinalBruResturant.Controllers
 
         public ViewResult Index()
         {
-            //ViewBag.listAllUsers = client.findAllUsers();
-
             //cookie expiries are set so they dont expire before we get to use them
             currentUserCookie.Expires = DateTime.Now.AddDays(1);
             loginCookie.Expires = DateTime.Now.AddDays(1);
@@ -186,6 +184,8 @@ namespace FinalBruResturant.Controllers
                     reservation.UserId = Convert.ToInt32(userRequestCookie.Value);
 
                     client.InsertReservationIntoDB(reservation);
+
+                    ViewBag.findEmailByUserId = client.findEmailByUserId(Convert.ToInt32(userRequestCookie.Value));
 
                     return View("Thanks", reservationModel);
                 }

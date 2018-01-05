@@ -3,92 +3,132 @@
     ViewBag.Title = "Thanks";
 }
 
+@{
+    string stringMonth = "";
+}
+<!--Model.DateTime.Month returns a integer value, so this switch statement
+    makes it easier to read by giving it a string value-->
+@switch (Model.DateTime.Month)
+{
+    case 1:
+        stringMonth = "January";
+        break;
+    case 2:
+        stringMonth = "February";
+        break;
+    case 3:
+        stringMonth = "March";
+        break;
+    case 4:
+        stringMonth = "April";
+        break;
+    case 5:
+        stringMonth = "May";
+        break;
+    case 6:
+        stringMonth = "June";
+        break;
+    case 7:
+        stringMonth = "July";
+        break;
+    case 8:
+        stringMonth = "August";
+        break;
+    case 9:
+        stringMonth = "September";
+        break;
+    case 10:
+        stringMonth = "October";
+        break;
+    case 11:
+        stringMonth = "November";
+        break;
+    case 12:
+        stringMonth = "December";
+        break;
+    default:
+        break;
+}
+
+@{
+    var customerName = Model.Name;
+    var customerDate = Model.DateTime;
+    var customerRequest = Model.NumPeople.ToString();
+    var errorMessage = "";
+    //var debuggingFlag = false;
+    try
+    {
+        // Initialize WebMail helper
+        WebMail.SmtpServer = "smtp.gmail.com";
+        WebMail.SmtpPort = 587;
+        WebMail.UserName = "simonmcneil062@gmail.com";
+        WebMail.Password = "s12mc93pj";
+        WebMail.From = "simonmcneil062@gmail.com";
+        WebMail.EnableSsl = true;
+
+        // Send email
+        WebMail.Send(to: ViewBag.findEmailByUserId,
+        subject: "Bru Resturant - " + customerName + "'s Reservation Confirmation",
+        body: "We are excited for you to join us!\n\nYour reservation is for " +
+        Model.NumPeople + " people on " + @stringMonth + " " + @Model.DateTime.Day +
+        ", " + @Model.DateTime.Year + " at " + @Model.DateTime.TimeOfDay + "."
+        ) ;
+    }
+    catch (Exception ex)
+    {
+        errorMessage = ex.Message;
+    }
+}
+
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Reserve a Table</title>
-    <link rel="stylesheet" href="~/css/styles.css" />
-    <link rel="stylesheet" href="~/Content/bootstrap.css" />
-    <link rel="stylesheet" href="~/Css/StyleSheet1.css" />
-    <link rel="stylesheet" href="~/Css/ReservationStyle.css" />
-    <link rel="stylesheet" href="~/Css/CreateProfile.css" />
-    <script type="text/javascript" src="~/Scripts/menu.js"></script>
-</head>
-<body class="backgroundView">
-    <div id="left"></div>
-    <div id="right"></div>
-    <div id="top"></div>
-    <div id="bottom"></div>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Reserve a Table</title>
+        <link rel="stylesheet" href="~/css/styles.css" />
+        <link rel="stylesheet" href="~/Content/bootstrap.css" />
+        <link rel="stylesheet" href="~/Css/StyleSheet1.css" />
+        <link rel="stylesheet" href="~/Css/ReservationStyle.css" />
+        <link rel="stylesheet" href="~/Css/CreateProfile.css" />
+        <link rel="stylesheet" href="~/Css/Thanks.css" />
+        <script type="text/javascript" src="~/Scripts/menu.js"></script>
+    </head>
+    <body class="backgroundView">
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="top"></div>
+        <div id="bottom"></div>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        @Html.ActionLink("Home", "MainPage", "Home", null, null)
-        @Html.ActionLink("About", "About", "Home", null, null)
-        <a href="#">Services</a>
-        @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
-        <a href="#">Contact</a>
-    </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            @Html.ActionLink("Home", "MainPage", "Home", null, null)
+            @Html.ActionLink("About", "About", "Home", null, null)
+            @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
+            @Html.ActionLink("Login", "LoginPage", "Home", null, null)
+        </div>
 
-    <div id="main">
-        <span style="font-size:40px;cursor:pointer; color:white;" onclick="openNav()">&#9776;</span>
-    </div>
+        <div id="main">
+            <span style="font-size:40px;cursor:pointer; color:white;" onclick="openNav()">&#9776;</span>
+        </div>
 
-    @{
-        string stringMonth = "";
-    }
-    <!--Model.DateTime.Month returns a integer value, so this switch statement
-        makes it easier to read by giving it a string value-->
-    @switch (Model.DateTime.Month)
-    {
-        case 1:
-            stringMonth = "January";
-            break;
-        case 2:
-            stringMonth = "February";
-            break;
-        case 3:
-            stringMonth = "March";
-            break;
-        case 4:
-            stringMonth = "April";
-            break;
-        case 5:
-            stringMonth = "May";
-            break;
-        case 6:
-            stringMonth = "June";
-            break;
-        case 7:
-            stringMonth = "July";
-            break;
-        case 8:
-            stringMonth = "August";
-            break;
-        case 9:
-            stringMonth = "September";
-            break;
-        case 10:
-            stringMonth = "October";
-            break;
-        case 11:
-            stringMonth = "November";
-            break;
-        case 12:
-            stringMonth = "December";
-            break;
-        default:
-            break;
-    }
-
-    <p>
-        <h1>Thank you, @Model.Name!</h1>
-        <h3>
-            Your reservation is confirmed for @stringMonth
-            @Model.DateTime.Day, @Model.DateTime.Year at @Model.DateTime.TimeOfDay for
-            @Model.NumPeople people
-        </h3>
-        <h3>We can't wait to see you!</h3>
-    </p>
-</body>
+        <div class="container">
+            <div class="row marketing">
+                <div class="col-lg-12">
+                    <div class="center-align-confirmation">
+                        <center>
+                            <hr />
+                            <h1>
+                                Success! - Your reservation is confirmed for @stringMonth
+                                @Model.DateTime.Day, @Model.DateTime.Year at
+                                @Model.DateTime.TimeOfDay for
+                                @Model.NumPeople People
+                            </h1>
+                            <h2>We've sent you an email to confirm</h2>
+                            <hr />
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

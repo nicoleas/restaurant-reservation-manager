@@ -1,12 +1,51 @@
-﻿
+﻿@using FinalBruResturant.Models
+@model FinalBruResturant.Models.Profile
 @{
     ViewBag.Title = "ConfirmationPage";
 }
+<!DOCTYPE html>
 
-<h2>ConfirmationPage</h2>
-
-<!-- 
-    Page to confirm their data was recieved
-
-    Urge them to check their email, will be sent an confirmation link???
-    -->
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Reserve a Table</title>
+        <link rel="stylesheet" href="~/css/styles.css" />
+        <link rel="stylesheet" href="~/Content/bootstrap.css" />
+        <link rel="stylesheet" href="~/Css/StyleSheet1.css" />
+        <link rel="stylesheet" href="~/Css/ReservationStyle.css" />
+        <link rel="stylesheet" href="~/Css/CreateProfile.css" />
+        <link rel="stylesheet" href="~/Css/Thanks.css" />
+        <script type="text/javascript" src="~/Scripts/menu.js"></script>
+    </head>
+    <body class="backgroundView">
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="top"></div>
+        <div id="bottom"></div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            @Html.ActionLink("Home", "MainPage", "Home", null, null)
+            @Html.ActionLink("About", "About", "Home", null, null)
+            @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
+            @Html.ActionLink("Login", "LoginPage", "Home", null, null)
+        </div>
+        <div id="main">
+            <span style="font-size:40px;cursor:pointer; color:white;" onclick="openNav()">&#9776;</span>
+        </div>
+        <div class="container">
+            <div class="row marketing">
+                <div class="col-lg-12">
+                    <div class="center-align-confirmation">
+                        <center>
+                            <hr />
+                            <h2>
+                                Welcome! - Your Account is Created!
+                            </h2>
+                            <hr />
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
