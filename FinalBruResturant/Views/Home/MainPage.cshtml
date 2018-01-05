@@ -30,18 +30,6 @@
         @Html.ActionLink("Reserve", "ReservationsPage", "Home", null, null)
         @Html.ActionLink("Login", "LoginPage", "Home", null, null)
         <a href="#">Contact</a>
-
-        @if (ViewBag.currentUser != null)
-        {
-            <p>You are logged in as </p>
-            <p>@Model.FirstName.</p>
-        }
-        else
-        {
-            <p>You are not logged in. </p>
-            <p>@Html.ActionLink("Login", "LoginPage", "Home", null, new { @id = "smallLinkSideNav" }) or @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null)</p>
-        }
-
     </div>
 
     <div id="main">

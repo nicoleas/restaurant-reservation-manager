@@ -280,10 +280,10 @@ namespace FinalBruResturant.ResturantService {
         System.Threading.Tasks.Task<FinalBruResturant.ResturantService.Reservation[]> findAllReservationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
-        FinalBruResturant.ResturantService.User[] findUserByUsername(string username);
+        FinalBruResturant.ResturantService.User findUserByUsername(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/findUserByUsername", ReplyAction="http://tempuri.org/IResturantService/findUserByUsernameResponse")]
-        System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username);
+        System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User> findUserByUsernameAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IResturantService/InsertIntoDB", ReplyAction="http://tempuri.org/IResturantService/InsertIntoDBResponse")]
         void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user);
@@ -347,12 +347,12 @@ namespace FinalBruResturant.ResturantService {
             return base.Channel.findAllReservationsAsync();
         }
         
-        public FinalBruResturant.ResturantService.User[] findUserByUsername(string username) {
-            return base.Channel.findUserByUsername(username);
+        public FinalBruResturant.ResturantService.User findUserByUsername(string username, string password) {
+            return base.Channel.findUserByUsername(username, password);
         }
         
-        public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User[]> findUserByUsernameAsync(string username) {
-            return base.Channel.findUserByUsernameAsync(username);
+        public System.Threading.Tasks.Task<FinalBruResturant.ResturantService.User> findUserByUsernameAsync(string username, string password) {
+            return base.Channel.findUserByUsernameAsync(username, password);
         }
         
         public void InsertIntoDB(FinalBruResturant.ResturantService.Reservation reservation, FinalBruResturant.ResturantService.User user) {

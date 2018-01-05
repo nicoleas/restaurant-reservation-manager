@@ -191,6 +191,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ReservationModel.cs" />
+    <Compile Include="Models\ReservationParentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

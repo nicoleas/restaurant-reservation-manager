@@ -18,42 +18,65 @@ namespace FinalBruResturant.Controllers
             return View("MainPage");
         }
 
+        #region Main Page
         [HttpGet]
         public ActionResult MainPage()
         {
             return View("MainPage");
         }
+        #endregion
 
+        #region About Page
         public ActionResult About()
         {
             return View("About");
         }
+        #endregion
 
+        #region Login Page
         [HttpGet]
         public ActionResult LoginPage()
         {
                 return View("LoginPage");
         }
 
+        [HttpPost]
         public ActionResult LoginPage(Login login)
         {
             String username = login.Username;
             String password = login.Password;
+            String sender = Request.Form["submit"]; //store retrieved values from form
 
             if (ModelState.IsValid)
             {
-                if (client.findUserByUsername(username).Count() == 1)
-                {
-                    User userAttempt = client.findUserByUsername(username)[0];
-                    ViewBag.currentUser = userAttempt;
-                }
-                else
-                {
-                    ViewBag.currentUser = null;
-                }
+                User currentUser = client.findUserByUsername(username, password);
+                ViewBag.currentUser = currentUser;
             }
-                return View("MainPage");
+            else
+            {
+                ViewBag.currentUser = null;
+            }
+
+            /*
+            //to determine which form the user filled out
+            switch (sender)
+            {
+                case "asUser": //student will attend party
+                    return View("MainPage")
+                    break;
+                case "asGuest": // student cannot attend party
+                    studentResponse.WillAttend = false;
+                    break;
+                default:
+                    studentResponse.WillAttend = false;
+                    break;
+            }
+            */
+            return View("MainPage");
         }
+        #endregion
+
+        #region Create Profile Page
 
         [HttpGet]
         public ActionResult CreateProfilePage()
@@ -90,6 +113,9 @@ namespace FinalBruResturant.Controllers
             }
         }
 
+        #endregion
+
+        #region Reservations Page
         [HttpGet]
         public ActionResult ReservationsPage()
         {
@@ -122,5 +148,6 @@ namespace FinalBruResturant.Controllers
                 return View();
             }
         }
+        #endregion
     }
 }

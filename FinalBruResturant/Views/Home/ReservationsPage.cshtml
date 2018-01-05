@@ -1,5 +1,5 @@
 ﻿@using FinalBruResturant.Models
-@model FinalBruResturant.Models.ReservationModel
+@model FinalBruResturant.Models.ReservationParentModel
 @{
     ViewBag.Title = "ReservationsPage";
 }
@@ -39,7 +39,7 @@
                 <div class="borderSurround">
                     <div class="col-md-6 d panel-default spacing">
                         <div class="panel-heading"><h4>Reserve as Guest</h4></div>
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm("ReservationsPage", "Home", FormMethod.Post))
                          {
                             @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
                             <div class="form-group">
@@ -57,14 +57,14 @@
                                 @Html.Label("Info", "For tables larger than 16 persons please contact the resturant directly.")
                             </div>
                             <div>
-                                <button class="btn-lg btn-primary" name="submit" value="true" type="submit">Make Reservation</button>
+                                <button class="btn-lg btn-primary" name="submit" value="asGuest" type="submit">Make Reservation</button>
                             </div>
                          }
                     </div>
                 </div>
                 <div class="col-md-6 d panel-default ">
                     <div class="panel-heading"><h4>Login to Reserve</h4></div>
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
                     {
                         @Html.ValidationSummary(false, "", new {@class= "custom-validation-summary" })
                         <div class="form-group">
@@ -75,8 +75,11 @@
                             @Html.Label("Password", "Password:")<br />
                             @Html.TextBox("Password", null, new { @class = "form-control", @type = "password" })
                         </div>
-                        @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null)
+                        <div>
+                            <button class="btn btn-primary" name="submit" value="asUser" type="submit">Login</button>
+                        </div>
                     }
+                    @Html.ActionLink("Create New Profile", "CreateProfilePage", "Home", null, null)
                 </div>
             </div>
         </div>

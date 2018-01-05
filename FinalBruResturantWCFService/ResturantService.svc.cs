@@ -23,9 +23,20 @@ namespace FinalBruResturantWCFService
             return entities.Users.ToList();
         }
 
-        public List<User> findUserByUsername(String username)
+        public User findUserByUsername(String username, String password)
         {
-            return entities.Users.ToList();
+            List<User> userList = entities.Users.Where(u => (u.Username == username && u.Password == password)).ToList();
+
+
+            //if there is exactly one user with that same username and matching password
+            if (entities.Users.Where(u => (u.Username == username && u.Password == password)).Count() == 1)
+            {
+                return userList[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
