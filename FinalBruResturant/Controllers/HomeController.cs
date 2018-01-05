@@ -10,8 +10,10 @@ namespace FinalBruResturant.Controllers
 {
     public class HomeController : Controller
     {
+        //global variables
         private ResturantServiceClient client = new ResturantServiceClient();
         User currentUser;
+        //cookies used througout the controller
         HttpCookie currentUserCookie = new HttpCookie("user");
         HttpCookie loginCookie = new HttpCookie("loginSentBy");
         HttpCookie loginRequestCookie;
@@ -19,7 +21,9 @@ namespace FinalBruResturant.Controllers
 
         public ViewResult Index()
         {
-            ViewBag.listAllUsers = client.findAllUsers();
+            //ViewBag.listAllUsers = client.findAllUsers();
+
+            //cookie expiries are set so they dont expire before we get to use them
             currentUserCookie.Expires = DateTime.Now.AddDays(1);
             loginCookie.Expires = DateTime.Now.AddDays(1);
             return View("MainPage");
@@ -52,18 +56,25 @@ namespace FinalBruResturant.Controllers
         {
             String username = login.Username;
             String password = login.Password;
+            //cookie to hold the value of which page sent user to LoginPage
+            loginRequestCookie = Request.Cookies["loginSentBy"];
 
+            //if page validations defined in the Login model pass
             if (ModelState.IsValid)
             {
+                //use service to find out if the user exists
                 currentUser = client.findUserByUsername(username, password);
                 ViewBag.currentUser = currentUser;
 
+                //if the user exists
                 if(currentUser != null)
                 {
+                    //insert data into cookie that contains the id 
+                    //of the user trying to login
                     currentUserCookie.Value = currentUser.UserId.ToString();
                     Response.Cookies.Add(currentUserCookie);
                 }
-                else
+                else //if the user does not exist
                 {
                     ViewBag.currentUser = "wrongCredentials";
                     return View("LoginPage");
@@ -72,13 +83,9 @@ namespace FinalBruResturant.Controllers
             }
             else
             {
-                //ViewBag.currentUser = null;
-
                 //there is a validation error
                 return View();
             }
-
-            loginRequestCookie = Request.Cookies["loginSentBy"];
 
             if (loginRequestCookie != null)
             {
@@ -104,9 +111,9 @@ namespace FinalBruResturant.Controllers
         [HttpPost]
         public ActionResult CreateProfilePage(Profile profile)
         {
+            //if page validations defined in the Profile model pass
             if (ModelState.IsValid)
             {
-
                 //insert into database using entity framework
                 User user = new User();
 
@@ -120,12 +127,15 @@ namespace FinalBruResturant.Controllers
 
                 client.InsertUserIntoDB(user);
 
+                //use service to find the user who just logged in
+                //to get their current UserId(it autoincrements) 
+                //and update the current user cookie
                 currentUser = client.findUserByUsername(profile.Username, profile.Password);
                 ViewBag.currentUser = user;
                 currentUserCookie.Value = currentUser.UserId.ToString();
                 Response.Cookies.Add(currentUserCookie);
 
-                return View("ConfirmationPage"/*,profile*/);
+                return View("ConfirmationPage");
 
             }
             else
@@ -147,20 +157,28 @@ namespace FinalBruResturant.Controllers
         [HttpPost]
         public ActionResult ReservationsPage(ReservationModel reservationModel)
         {
+            //if page validations defined in the Reservation model pass
             if (ModelState.IsValid)
             {
                 Reservation reservation = new Reservation();
+                //cookie to hold the userId of the current user
                 userRequestCookie = Request.Cookies["user"];
 
+                //if no user is logged in
                 if (userRequestCookie == null)
                 {
+                    //send user to login page and update the value of the cookie
+                    //to inform the LoginPage that the user needs to come back
+                    //to the ReservationsPage after login
                     loginCookie.Value = "reservationsPage";
                     Response.Cookies.Add(loginCookie);
                     ViewBag.message= "notSignedIn";
                     return View("LoginPage");
                 }
-                else
+                else //if user is already logged in
                 {
+                    //insert into database using entity framework
+                    //and reset cookie value
                     loginCookie.Value = null;
                     reservation.Name = reservationModel.Name;
                     reservation.DateTime = reservationModel.DateTime;
@@ -171,7 +189,6 @@ namespace FinalBruResturant.Controllers
 
                     return View("Thanks", reservationModel);
                 }
-
             }
             else
             {
