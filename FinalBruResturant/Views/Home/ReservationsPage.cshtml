@@ -39,7 +39,6 @@
         <div class="row panel-body">
             <div class="borderSurround">
                 <div class="col-md-6 d panel-default spacing">
-                    <div class="panel-heading"><h4>Reserve as Guest</h4></div>
                     @using (Html.BeginForm("ReservationsPage", "Home", FormMethod.Post))
                     {
                         @Html.ValidationSummary(false, "", new { @class = "custom-validation-summary" })
@@ -62,6 +61,7 @@
                     }
                 </div>
             </div>
+        </div>
         </div>
     </body>
 </html>

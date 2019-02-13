@@ -66,7 +66,10 @@
         WebMail.From = "simonmcneil062@gmail.com";
         WebMail.EnableSsl = true;
 
-        // Send email
+        /* Send email, WebMail.Send property knows which email to send it to 
+            by getting the current signed in user and then taking their email
+            that they registered with when creating their account. 
+         */
         WebMail.Send(to: ViewBag.findEmailByUserId,
         subject: "Bru Resturant - " + customerName + "'s Reservation Confirmation",
         body: "We are excited for you to join us!\n\nYour reservation is for " +

@@ -2,7 +2,9 @@
 using FinalBruResturant.ResturantService;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,11 +21,14 @@ namespace FinalBruResturant.Controllers
         HttpCookie loginRequestCookie;
         HttpCookie userRequestCookie;
 
+
+
         public ViewResult Index()
         {
             //cookie expiries are set so they dont expire before we get to use them
             currentUserCookie.Expires = DateTime.Now.AddDays(1);
             loginCookie.Expires = DateTime.Now.AddDays(1);
+                
             return View("MainPage");
         }
 
@@ -31,6 +36,84 @@ namespace FinalBruResturant.Controllers
         [HttpGet]
         public ActionResult MainPage()
         {
+            //request for yelp api, by default the yelp api returns its data in JSON format
+            HttpWebRequest webRequest = WebRequest.Create("https://api.yelp.com/v3/businesses/bru-restaurant-oakville") as HttpWebRequest;
+            HttpWebResponse webResponse = null;
+
+            //api credentials
+            webRequest.Headers.Add("Authorization", "Bearer MSONs5aSzubPaRJXutDJ_PgokQX-P_MkzJ2bZJFwpnH4nwmYzWAXLEHMxpKTtncIOUSmAvJUtWB7h6C1gDtac0aAEy4Km0xgsdQimSk55r5P8V1BdNynw1gY45tPWnYx");
+            webRequest.Method = "GET";
+            webResponse = (HttpWebResponse)webRequest.GetResponse();
+            if (webResponse.StatusCode == HttpStatusCode.OK) //checks response was succesfull
+            {
+                StreamReader responseReader = new StreamReader(webResponse.GetResponseStream());
+
+                //stores the response in a string array
+                string[] responseData = responseReader.ReadToEnd().Split();
+
+                //created a list type array
+                List<string> bruInfoYelp = new List<string>();
+
+                /*this foreach loop is a filter of storing what information we want
+                    to display from the yelp api in the main page 
+                 */
+                foreach (string bruInfo in responseData)
+                {
+                    //the case checks for a certain key
+                    switch (bruInfo)
+                    {
+                        case "\"name\":": 
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "\"Bru":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "Restaurant\",":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "\"display_phone\":":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "905-844-4400\",":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "\"rating\":":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                        case "4.0,":
+                            bruInfoYelp.Add(bruInfo);
+                            break;
+                    }
+                }
+
+                /* The following 8 lines of code are to modify some of the values in the 
+                 * bruInfoYelp array, because some values have a comma or quoation mark
+                 * as there value, therefore not looking appealing when being dislpayed
+                 * in the view.
+                 */
+                string bruModifiedQuotes = bruInfoYelp[1].Replace("\"", "");
+                string restaurantModifiedQuotes = bruInfoYelp[2].Replace("\"", "");
+                string phoneNumberModifiedQuotes = bruInfoYelp[4].Replace("\"", "");
+                string ratingModifiedQuotes = bruInfoYelp[6].Replace("\"", "");
+
+                string bruModifiedComma = bruModifiedQuotes.Replace(",", "");
+                string restaurantModifiedComma = restaurantModifiedQuotes.Replace(",", "");
+                string phoneNumberModifiedComma = phoneNumberModifiedQuotes.Replace(",", "");
+                string ratingModifiedComma = ratingModifiedQuotes.Replace(",", "");
+
+                //stores the final modified properties in the YelpInfo model properties
+                YelpInfo yelpInfo = new YelpInfo
+                {
+                    restaurantOne = bruModifiedComma,
+                    restaurantSecond = restaurantModifiedComma,
+                    restaurantNumber = phoneNumberModifiedComma,
+                    restaurantRating = ratingModifiedComma
+                };
+
+                //sends the yelpInfo object to the MainPage.cshtml view
+                return View("MainPage", yelpInfo);
+
+            }
             return View("MainPage");
         }
         #endregion
@@ -75,7 +158,7 @@ namespace FinalBruResturant.Controllers
                 else //if the user does not exist
                 {
                     ViewBag.currentUser = "wrongCredentials";
-                    return View("LoginPage");
+                    return View("LoginPage", login);
                 }
 
             }
@@ -91,6 +174,7 @@ namespace FinalBruResturant.Controllers
             }
             else
             {
+                
                 return View("MainPage");
             }
 
